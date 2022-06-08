@@ -88,6 +88,41 @@ class SinglyLinkedList {
     this.length--;
     return this;
   }
+
+  // get value at index
+  get(index) {
+    // if index is negative or greater than length, return undefined
+    if (index < 0 || index >= this.length) return undefined;
+
+    // if index is 0, return head
+    if (index === 0) return this.head;
+
+    // otherwise, set current to head and iterate through list until index is reached
+    let current = this.head;
+    for (let i = 1; i <= index; i++) {
+      current = current.next;
+    }
+    return current;
+  }
+
+  // set value at index
+  set(index, value) {
+    // if index is negative or greater than length, return undefined
+    if (index < 0 || index >= this.length) return undefined;
+
+    // if index is 0, set head to value
+    if (index === 0) {
+      this.head.value = value;
+    } else {
+      // otherwise, set current to head and iterate through list until index is reached
+      let current = this.head;
+      for (let i = 1; i <= index; i++) {
+        current = current.next;
+      }
+      current.value = value;
+    }
+    return this;
+  }
 }
 
 const list = new SinglyLinkedList();
