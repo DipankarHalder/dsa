@@ -49,6 +49,45 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
+
+  // remove from end of list
+  pop() {
+    // if list is empty, return undefined
+    if (!this.head) return undefined;
+
+    // if list has only one node, set head and tail to null
+    if (this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      // otherwise, set tail to previous node and set tail's next to null
+      let current = this.head;
+      while (current.next !== this.tail) {
+        current = current.next;
+      }
+      current.next = null;
+      this.tail = current;
+    }
+    this.length--;
+    return this;
+  }
+
+  // remove from beginning of list
+  shift() {
+    // if list is empty, return undefined
+    if (!this.head) return undefined;
+
+    // if list has only one node, set head and tail to null
+    if (this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      // otherwise, set head to next node and set head's next to null
+      this.head = this.head.next;
+    }
+    this.length--;
+    return this;
+  }
 }
 
 const list = new SinglyLinkedList();
