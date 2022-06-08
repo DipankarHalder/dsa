@@ -123,6 +123,70 @@ class SinglyLinkedList {
     }
     return this;
   }
+
+  // insert value at index
+  insert(index, value) {
+    // if index is negative or greater than length, return undefined
+    if (index < 0 || index > this.length) return undefined;
+
+    // if index is 0, call unshift
+    if (index === 0) return this.unshift(value);
+
+    // if index is length, call push
+    if (index === this.length) return this.push(value);
+
+    // otherwise, set current to head and iterate through list until index is reached
+    let newNode = new Node(value);
+    let current = this.head;
+    for (let i = 1; i < index; i++) {
+      current = current.next;
+    }
+    newNode.next = current.next;
+    current.next = newNode;
+    this.length++;
+    return this;
+  }
+
+  // remove value at index
+  remove(index) {
+    // if index is negative or greater than length, return undefined
+    if (index < 0 || index >= this.length) return undefined;
+
+    // if index is 0, call shift
+    if (index === 0) return this.shift();
+
+    // if index is length - 1, call pop
+    if (index === this.length - 1) return this.pop();
+
+    // otherwise, set current to head and iterate through list until index is reached
+    let current = this.head;
+    for (let i = 1; i < index; i++) {
+      current = current.next;
+    }
+    current.next = current.next.next;
+    this.length--;
+    return this;
+  }
+
+  // reverse list
+  reverse() {
+    // if list is empty, return undefined
+    if (!this.head) return undefined;
+
+    // if list has only one node, return list
+    if (this.head === this.tail) return this;
+
+    // otherwise, set current to head and iterate through list
+    let current = this.head;
+    while (current) {
+      let temp = current.next;
+      current.next = this.head;
+      this.head = current;
+      current = temp;
+    }
+    this.tail = this.head;
+    return this;
+  }
 }
 
 const list = new SinglyLinkedList();
